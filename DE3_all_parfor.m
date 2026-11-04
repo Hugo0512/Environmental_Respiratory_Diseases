@@ -4,11 +4,11 @@ warning off
 variablenumber=29;%%%%%%%%%%%%%%%%%%%%%%%
 totaldata={};
 sigma=5;
-order=3;%½×Êı%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ÔËĞĞÊ±ĞŞ¸Ä
-%ÏÈÌî³ä¿ÕÈ±Öµ
-%Ö®ºó·ÖÑµÁ·Êı¾İºÍÑéÖ¤Êı¾İ
+order=3;%é˜¶æ•°%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%è¿è¡Œæ—¶ä¿®æ”¹
+%å…ˆå¡«å……ç©ºç¼ºå€¼
+%ä¹‹ååˆ†è®­ç»ƒæ•°æ®å’ŒéªŒè¯æ•°æ®
 indepenedent_variable_number=16;
-dependent_variable_number=13;%%%%%%%%%%%%%%%%%%%%%%%%%%%%ÔËĞĞÊ±ĞŞ¸Ä
+dependent_variable_number=13;%%%%%%%%%%%%%%%%%%%%%%%%%%%%è¿è¡Œæ—¶ä¿®æ”¹
 
 parpool('local', 10);
 raw=[];
@@ -21,7 +21,7 @@ raw=[air climate diseases];
                 for colindex=1:size(raw,2)
                     raw(:,colindex)=(raw(:,colindex)-min(raw(:,colindex)))/(max(raw(:,colindex))-min(raw(:,colindex)));
                 end
-                %·ÖÑµÁ·ºÍÑéÖ¤Êı¾İ£¬ÑµÁ·²¢ÇÒ²âÊÔ
+                %åˆ†è®­ç»ƒå’ŒéªŒè¯æ•°æ®ï¼Œè®­ç»ƒå¹¶ä¸”æµ‹è¯•
                 
                 
      
@@ -41,8 +41,8 @@ raw=[air climate diseases];
     historybestindividual=[];
     historybestfitness=Inf;
 sparseratio=0.4;    
-N=100;%ÖÖÈº¹æÄ£
-pop=[];%ÖÖÈº
+N=100;%ç§ç¾¤è§„æ¨¡
+pop=[];%ç§ç¾¤
 for index=1:N
     for index1=1:variablenumber
         for index2=1:variablenumber
@@ -51,7 +51,7 @@ for index=1:N
             else
                 pop(index,variablenumber*(index1-1)+index2)=rand()*2-1;
             end
-           %»¼ÕßÊıÁ¿¶ÔÆäËûÒòËØµÄÓ°ÏìºöÂÔ
+           %æ‚£è€…æ•°é‡å¯¹å…¶ä»–å› ç´ çš„å½±å“å¿½ç•¥
            if index1>=17 && index1<=29 && index2>=1 && index2<=16
               pop(index,variablenumber*(index1-1)+index2)=0;
            end
@@ -63,8 +63,8 @@ for index=1:N
     
 end
 
-F=0.8;%ÏòÁ¿Òò×Ó
-maxiterations=500;%½ø»¯´úÊı
+F=0.8;%å‘é‡å› å­
+maxiterations=500;%è¿›åŒ–ä»£æ•°
 CR=0.2;
 for index1=1:maxiterations
     index1
@@ -98,7 +98,7 @@ for index1=1:maxiterations
                middlearray(index9)=-1;
             end
            if floor(index9/variablenumber)>=16 && floor(index9/variablenumber)<=28 && mod(index9,variablenumber)>=1 && mod(index9,variablenumber)<=16
-                         middlearray(index9)=0;%»¼ÕßÊıÁ¿¶ÔÆäËûÒòËØµÄÓ°ÏìºöÂÔ
+                         middlearray(index9)=0;%æ‚£è€…æ•°é‡å¯¹å…¶ä»–å› ç´ çš„å½±å“å¿½ç•¥
            end
    end
    for index3=1:variablenumber
@@ -108,42 +108,42 @@ for index1=1:maxiterations
            end
        end
    end
-    %¼õÉÙ·Ç0ÊıÖµµÄ¸öÊı
+    %å‡å°‘é0æ•°å€¼çš„ä¸ªæ•°
        nonzero=find(middlearray~=0);
        nonzeronumber=numel(nonzero);
        if nonzeronumber>variablenumber^2*(1-sparseratio)-variablenumber
            needzero=round(variablenumber^2*(1-sparseratio)-variablenumber);
 %            position=randi(1,needzero,[1,variablenumber^2]);
            position=randi([1,variablenumber^2],[1 needzero]);
-              %Ñ¡Ôñ¼¸¸ö±ä³É0
+              %é€‰æ‹©å‡ ä¸ªå˜æˆ0
               middlearray(position)=0;
        end
-    %×îºóÒ»ĞĞĞŞÕıÎª0
+    %æœ€åä¸€è¡Œä¿®æ­£ä¸º0
     
-    %×îºóÒ»ĞĞĞŞÕıÎª0
+    %æœ€åä¸€è¡Œä¿®æ­£ä¸º0
 %     for index=6:variablenumber
 %      middlearray((index-1)*variablenumber+1:(index-1)*variablenumber+5)=0;
 %     end
-%Ì°À·Ñ¡Ôñ£¨middlearrayºÍpop(index2,:)£©
-%ÆÀ¼ÛÁ½¸öÈËÈûÌåµÄÊÊÓ¦¶È
-%Ê×ÏÈ¼ÆËãÃ¿¸öĞòÁĞµÄÊıÖµ,È¾É«Ìå»Ö¸´³É¾ØÕó
+%è´ªå©ªé€‰æ‹©ï¼ˆmiddlearrayå’Œpop(index2,:)ï¼‰
+%è¯„ä»·ä¸¤ä¸ªäººå¡ä½“çš„é€‚åº”åº¦
+%é¦–å…ˆè®¡ç®—æ¯ä¸ªåºåˆ—çš„æ•°å€¼,æŸ“è‰²ä½“æ¢å¤æˆçŸ©é˜µ
 middlearraymatrix=[];
         for index4=1:variablenumber
             for index5=1:variablenumber
                 middlearraymatrix(index4,index5)=middlearray((index4-1)+index5);
             end
         end
-%¼ÆËãÃ¿¸öĞòÁĞµÄÖµ
+%è®¡ç®—æ¯ä¸ªåºåˆ—çš„å€¼
 computationresult={};
 
   tempsequence=traindata;%%%%%%%%%%%%%%%%%%%%%%%%%%%
   sequence=[];
-  sequence(1:order,:)=tempsequence(1:order,:);%´æ´¢Ä£ĞÍ²úÉúµÄĞòÁĞÖµ
+  sequence(1:order,:)=tempsequence(1:order,:);%å­˜å‚¨æ¨¡å‹äº§ç”Ÿçš„åºåˆ—å€¼
   for index7=order+1:size(tempsequence,1)
     for index6=1:variablenumber
              temp=0;
             for index789=1:order
-                temp=temp+(sequence(index7-index789,:).^index789)*middlearraymatrix(:,index6);
+                 temp=temp+sequence(index7-index789,:)*(middlearraymatrix(:,index6).^index789);
                 %sequence(index7,index6)=sequence(index7-1,:)*middlearraymatrix(:,index6);
             end
          sequence(index7,index6)=1/(1+exp(-sigma*temp));
@@ -151,14 +151,14 @@ computationresult={};
   end
   computationresult=sequence;%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%¼ÆËãÎó²î
+%è®¡ç®—è¯¯å·®
 fitness1=0;
 
      sequence=computationresult;
      tempsequence=traindata;
         fitness1=fitness1+sum(sum((tempsequence(2:end,:)-sequence(2:end,:)).^2))/(variablenumber*(size(tempsequence,1)-1));
 
-%Ê×ÏÈ¼ÆËãÃ¿¸öĞòÁĞµÄÊıÖµ,È¾É«Ìå»Ö¸´³É¾ØÕó
+%é¦–å…ˆè®¡ç®—æ¯ä¸ªåºåˆ—çš„æ•°å€¼,æŸ“è‰²ä½“æ¢å¤æˆçŸ©é˜µ
 middlearraymatrix=[];
 anothervector=pop(index2,:);
         for index4=1:variablenumber
@@ -166,17 +166,17 @@ anothervector=pop(index2,:);
                 middlearraymatrix(index4,index5)=anothervector((index4-1)+index5);
             end
         end
-%¼ÆËãÃ¿¸öĞòÁĞµÄÖµ
+%è®¡ç®—æ¯ä¸ªåºåˆ—çš„å€¼
 computationresult1={};
 
   tempsequence=traindata;
     sequence1=[];
-  sequence1(1:order,:)=tempsequence(1:order,:);%´æ´¢Ä£ĞÍ²úÉúµÄĞòÁĞÖµ
+  sequence1(1:order,:)=tempsequence(1:order,:);%å­˜å‚¨æ¨¡å‹äº§ç”Ÿçš„åºåˆ—å€¼
   for index7=order+1:size(tempsequence,1)
     for index6=1:variablenumber
              temp=0;
             for index789=1:order
-                temp=temp+(sequence1(index7-index789,:).^index789)*middlearraymatrix(:,index6);
+                 temp=temp+sequence(index7-index789,:)*(middlearraymatrix(:,index6).^index789);
                 %sequence(index7,index6)=sequence(index7-1,:)*middlearraymatrix(:,index6);
             end
          sequence1(index7,index6)=1/(1+exp(-sigma*temp));
@@ -184,7 +184,7 @@ computationresult1={};
   end
     computationresult1=sequence1;
 
-%¼ÆËãÎó²î
+%è®¡ç®—è¯¯å·®
 fitness2=0;
 
     sequence1=computationresult1;
@@ -204,15 +204,15 @@ fitness2=0;
             historybestindividual=pop(index2,:);
         end
     end
-    %ĞŞÕıÈ¡Öµ·¶Î§
+    %ä¿®æ­£å–å€¼èŒƒå›´
  
        end
 end
-%ÕÒ³ö×îºÃµÄÒ»¸ö
+%æ‰¾å‡ºæœ€å¥½çš„ä¸€ä¸ª
 result=[];
 fitness=zeros(1,N);
 for index=1:N
-    %ÕÒ³öÃ¿Ò»¸ö¸öÌå£¬¼ÆËãÊÊÓ¦¶È
+    %æ‰¾å‡ºæ¯ä¸€ä¸ªä¸ªä½“ï¼Œè®¡ç®—é€‚åº”åº¦
     tempvector=pop(index,:);
      for index4=1:variablenumber
             for index5=1:variablenumber
@@ -222,12 +222,12 @@ for index=1:N
      
           tempsequence=testdata;
           sequence1=[];
-         sequence1(1:order,:)=tempsequence(1:order,:);%´æ´¢Ä£ĞÍ²úÉúµÄĞòÁĞÖµ
+         sequence1(1:order,:)=tempsequence(1:order,:);%å­˜å‚¨æ¨¡å‹äº§ç”Ÿçš„åºåˆ—å€¼
          for index7=order+1:size(tempsequence,1)
             for index6=1:variablenumber
                  temp=0;
                 for index789=1:order
-                    temp=temp+(sequence1(index7-index789,:).^index789)*middlearraymatrix(:,index6);
+                     temp=temp+sequence(index7-index789,:)*(middlearraymatrix(:,index6).^index789);
                     %sequence(index7,index6)=sequence(index7-1,:)*middlearraymatrix(:,index6);
                 end
                    sequence1(index7,index6)=1/(1+exp(-sigma*temp));
@@ -246,7 +246,7 @@ end
             historybestindividual=pop(number,:);
             historybestfitness=min(fitness);
         end
-% end%Óëindex000Æ¥Åä
+% end%ä¸index000åŒ¹é…
 lastresult(index777,:)=historybestindividual;
 lastfitness(index777)=historybestfitness;
 %lastresults(index777,:)=historybestindividual;
@@ -254,7 +254,7 @@ lastfitness(index777)= historybestfitness;
 lastresults=[lastresults;historybestindividual];
 %lastfitness=[lastfitness historybestfitness];
 
-end%¶ÔÓ¦index777
+end%å¯¹åº”index777
          save(['lastresult_',num2str(order),'_all','.mat'],'lastresults');
          save(['lastfitness_',num2str(order),'_all','.mat'],'lastfitness');
                       
