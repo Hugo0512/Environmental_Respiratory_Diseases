@@ -130,7 +130,7 @@ computationresult={};
     for index6=1:variablenumber
              temp=0;
             for index789=1:order
-                temp=temp+(sequence(index7-index789,:).^index789)*middlearraymatrix(:,index6);
+                 temp=temp+sequence(index7-index789,:)*(middlearraymatrix(:,index6).^index789);
                 %sequence(index7,index6)=sequence(index7-1,:)*middlearraymatrix(:,index6);
             end
          sequence(index7,index6)=1/(1+exp(-sigma*temp));
@@ -163,7 +163,7 @@ computationresult1={};
     for index6=1:variablenumber
              temp=0;
             for index789=1:order
-                temp=temp+(sequence1(index7-index789,:).^index789)*middlearraymatrix(:,index6);
+                 temp=temp+sequence(index7-index789,:)*(middlearraymatrix(:,index6).^index789);
                 %sequence(index7,index6)=sequence(index7-1,:)*middlearraymatrix(:,index6);
             end
          sequence1(index7,index6)=1/(1+exp(-sigma*temp));
@@ -214,7 +214,7 @@ for index=1:N
             for index6=1:variablenumber
                  temp=0;
                 for index789=1:order
-                    temp=temp+(sequence1(index7-index789,:).^index789)*middlearraymatrix(:,index6);
+                     temp=temp+sequence(index7-index789,:)*(middlearraymatrix(:,index6).^index789);
                     %sequence(index7,index6)=sequence(index7-1,:)*middlearraymatrix(:,index6);
                 end
                    sequence1(index7,index6)=1/(1+exp(-sigma*temp));
